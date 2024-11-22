@@ -3,6 +3,10 @@
 int player_score = 0;
 int cpu_score = 0;
 
+Color Green = Color{38, 185, 154, 255};
+Color Dark_Green = Color{20, 160, 133, 255};
+Color Light_Green = Color{129, 204, 184, 255};
+Color Yellow = Color{243, 213, 91, 255};
 
 class Ball{
     public:
@@ -11,7 +15,7 @@ class Ball{
     int radius;
 
     void Draw(){
-        DrawCircle(x, y, radius, WHITE);
+        DrawCircle(x, y, radius, Yellow);
     }
 
     void Update(){
@@ -64,7 +68,7 @@ class Paddle{
     int speed;
     void Draw()
     {
-        DrawRectangle(x, y, width, height, WHITE);
+        DrawRectangleRounded(Rectangle{x, y, width, height}, 0.8, 0, WHITE);
     }
 
     void Update(){
@@ -139,7 +143,9 @@ int main(){
             ball.speed_x *= -1;
         }
 
-        ClearBackground(BLACK);
+        ClearBackground(Dark_Green);
+        DrawRectangle(screen_width/2, 0, screen_width/ 2, screen_height, Green);
+        DrawCircle(screen_width/2, screen_height /2, 150, Light_Green);
         DrawLine(screen_width/2, 0 ,screen_width/2, screen_height, WHITE);
         ball.Draw();
         cpu.Draw();
